@@ -1,7 +1,6 @@
 pins.touchSetMode(TouchTarget.P1, TouchTargetMode.Capacitive)
 pins.touchSetMode(TouchTarget.P1, TouchTargetMode.Capacitive)
 let hra_zahajena = false
-let nahodna_doba = 0
 let vysledek_int = 0
 let vysledek_str = "X"
 let klic = false
@@ -16,7 +15,7 @@ function startovac() {
     basic.clearScreen()
     klic = true
     soundExpression.happy.play()
-    nahodna_doba = randint(3000, 10000)
+    let nahodna_doba = randint(3000, 10000)
     basic.pause(nahodna_doba)
     hra_zahajena = true
     music.playTone(Note.C, music.beat(1500))

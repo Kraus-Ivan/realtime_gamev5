@@ -2,7 +2,6 @@ pins.touch_set_mode(TouchTarget.P1, TouchTargetMode.CAPACITIVE)
 pins.touch_set_mode(TouchTarget.P1, TouchTargetMode.CAPACITIVE)
 
 hra_zahajena = False
-nahodna_doba = 0
 vysledek_int = 0
 vysledek_str = "X"
 klic = False
@@ -10,7 +9,7 @@ countA = 0
 countB = 0
 
 def startovac():
-    global hra_zahajena, nahodna_doba, klic, countA, countB, vysledek_str, vysledek_int
+    global hra_zahajena, klic, countA, countB, vysledek_str, vysledek_int
     countA = 0
     countB = 0
     vysledek_int = 0
