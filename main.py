@@ -29,15 +29,7 @@ def on_forever():
     is_pin1 = input.pin_is_pressed(TouchPin.P1)
     is_pin2 = input.pin_is_pressed(TouchPin.P2)
 
-    #console.log_value("Vysledek_int:", vysledek_int)
-    #console.log_value("Vysledek_str:", vysledek_str)
-    #console.log_value("Hra_zahajena:", hra_zahajena)
-    #console.log_value("Klic:", klic)
-
-    console.log_value("countA:", countA)
-    console.log_value("countB:", countB)
-
-
+    console.log_value("CountA", countA)
     if hra_zahajena and klic:
         if is_pin1 and is_pin2:
             vysledek_str = "R"
@@ -48,8 +40,7 @@ def on_forever():
         if is_pin2:
             vysledek_int = 2
             klic = False
-
-    if klic and hra_zahajena == False:
+    else:
         if is_pin1:
             countA =+ 1
         if is_pin2:
@@ -59,41 +50,28 @@ basic.forever(on_forever)
 
 def vysledek():
     global hra_zahajena, klic, vysledek_int, vysledek_str, countA, countB
-
+    splneno = False
     if vysledek_str == "R":
         basic.show_string("R")
-        basic.pause(3000)
-        hra_zahajena = False
-        startovac()
-
+        splneno = True
     elif vysledek_int == 1:
         basic.show_number(1)
-        basic.pause(3000)
-        hra_zahajena = False
-        startovac()
-
+        splneno = True
     elif vysledek_int == 2:
         basic.show_number(2)
-        basic.pause(3000)
-        basic.pause(3000)
-        hra_zahajena = False
-        startovac()
-
+        splneno = True
     elif countB > 0 and countA > 0 and hra_zahajena and klic:
         basic.show_string("C")
-        basic.pause(3000)
-        hra_zahajena = False
-        startovac()
-
+        splneno = True
     elif countB > 0 and countA == 0 and hra_zahajena and klic:
         basic.show_string("A")
-        basic.pause(3000)
-        hra_zahajena = False
-        startovac()
-
+        splneno = True
     elif countA > 0 and countB == 0 and hra_zahajena and klic:
         basic.show_string("B")
+        splneno = True
+
+    if splneno:   
         basic.pause(3000)
         hra_zahajena = False
-        startovac()
+        control.in_background(startovac)
 
